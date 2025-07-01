@@ -15,6 +15,9 @@ function createNewGrid(gridSize) {
 
     for (let i=0;i<gridSize**2;i++) {
         const div = document.createElement("div");
+        const divWidth = 800/gridSize + "px";
+        const divHeight = 800/gridSize + "px";
+        div.setAttribute("style",`width:${divWidth}; height:${divHeight}`);
         
         container.appendChild(div);
         div.addEventListener("mouseenter", (e)=> {
