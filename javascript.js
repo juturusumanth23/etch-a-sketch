@@ -4,7 +4,17 @@ const btn = document.querySelector("#btn");
 btn.addEventListener("click", () => createNewGrid(getGridSize()));
 
 function getGridSize() {
-    return prompt("Enter the Grid Size");
+    let size = prompt("Enter the Grid Size (value should be an integer between 1 to 100");
+    if (size === null ) {
+        size =16;
+    } 
+    while (size >100 ||size <1 || parseInt(size)!=size) {
+        size = prompt("Enter the Grid Size (value should be an integer between 1 to 100")
+        if (size === null) {
+            size=16;
+        }
+    }
+    return size; 
 }
 
 function createNewGrid(gridSize) {
