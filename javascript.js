@@ -31,7 +31,8 @@ function createNewGrid(gridSize) {
         
         container.appendChild(div);
         div.addEventListener("mouseenter", (e)=> {
-            e.target.style.backgroundColor="green";
+            let randomColor = getRandomColor();
+            e.target.style.backgroundColor=randomColor;
         });
         
     }
@@ -39,3 +40,10 @@ function createNewGrid(gridSize) {
 }
 
 createNewGrid(16);
+
+function getRandomColor() {
+    let r = Math.floor((Math.random())*256);
+    let g = Math.floor((Math.random())*256);
+    let b = Math.floor((Math.random())*256);
+    return `rgb(${r},${g},${b})`;
+}
