@@ -1,6 +1,7 @@
 const container = document.querySelector("#container");
 const btn = document.querySelector("#btn");
 
+let hoverCount = [];
 btn.addEventListener("click", () => createNewGrid(getGridSize()));
 
 function getGridSize() {
@@ -28,11 +29,12 @@ function createNewGrid(gridSize) {
         const divWidth = 800/gridSize + "px";
         const divHeight = 800/gridSize + "px";
         div.setAttribute("style",`width:${divWidth}; height:${divHeight}`);
-        
+        hoverCount[i] = 0;
         container.appendChild(div);
         div.addEventListener("mouseenter", (e)=> {
-            let randomColor = getRandomColor();
-            e.target.style.backgroundColor=randomColor;
+            hoverCount[i]+= 1;
+            let squareColor = getSquareColor(hoverCount[i]);
+            e.target.style.backgroundColor=squareColor;
         });
         
     }
@@ -40,10 +42,7 @@ function createNewGrid(gridSize) {
 }
 
 createNewGrid(16);
-
-function getRandomColor() {
-    let r = Math.floor((Math.random())*256);
-    let g = Math.floor((Math.random())*256);
-    let b = Math.floor((Math.random())*256);
-    return `rgb(${r},${g},${b})`;
+function getSquareColor(count) {
+    let opacity = count>9 ? `1` : `${0.1*count}`;
+    return `rgb(0,128,0,${opacity})`;
 }
